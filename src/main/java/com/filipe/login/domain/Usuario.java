@@ -8,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 public class Usuario implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cpf;
@@ -21,7 +23,7 @@ public class Usuario implements Serializable{
 	@ManyToMany
 	@JoinColumn
 	private Endereco endereco;
-	@ManyToOne
+	@OneToMany
 	@JoinColumn
 	private Telefone telefone;
 
