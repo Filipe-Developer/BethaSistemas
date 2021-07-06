@@ -1,13 +1,28 @@
 package com.filipe.login.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Endereco {
-	private int id;
-	private String endereco;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+//import javax.persistence.OneToMany;
 
+@Entity
+public class Endereco implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nomeEnd;
+
+	@ManyToMany(mappedBy = "endereco")
 	private List<Usuario> usuarios = new ArrayList<>();
 
 	public Endereco() {
@@ -18,7 +33,7 @@ public class Endereco {
 	public Endereco(int id, String endereco) {
 		super();
 		this.id = id;
-		this.endereco = endereco;
+		this.nomeEnd = endereco;
 	}
 
 	public int getId() {
@@ -30,11 +45,11 @@ public class Endereco {
 	}
 
 	public String getEndereco() {
-		return endereco;
+		return nomeEnd;
 	}
 
 	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+		this.nomeEnd = endereco;
 	}
 
 	public List<Usuario> getUsuarios() {

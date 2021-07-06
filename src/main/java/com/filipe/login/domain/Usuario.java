@@ -1,12 +1,28 @@
 package com.filipe.login.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Usuario {
-	private char cpf;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
+
+public class Usuario implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long cpf;
 	private String nome, sobrenome;
 
+	@ManyToMany
+	@JoinColumn
 	private Endereco endereco;
+	@ManyToOne
+	@JoinColumn
 	private Telefone telefone;
 
 	public Usuario() {
@@ -14,7 +30,7 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(char cpf, String nome, String sobrenome, Endereco endereco, Telefone telefone) {
+	public Usuario(long cpf, String nome, String sobrenome, Endereco endereco, Telefone telefone) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
@@ -23,11 +39,11 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-	public char getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(char cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
 
